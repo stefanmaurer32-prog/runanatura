@@ -1,4 +1,35 @@
-'use client';
-import Link from 'next/link';import {useState} from 'react';import {Leaf,Menu,X} from 'lucide-react';
-const links=[['/','Start'],['/coaching','Coaching'],['/workshops','Workshops'],['/community','Community'],['/buchen','Buchen'],['/mein-konto','Mein Konto']];
-export default function Header(){const [open,setOpen]=useState(false);return <header className="sticky top-0 z-50 bg-cream/95 backdrop-blur border-b border-sand"><div className="container-wide flex items-center justify-between py-5"><Link href="/" className="flex items-center gap-2 text-xl font-bold tracking-widest"><Leaf size={25}/> RUNA NATURA</Link><nav className="hidden lg:flex items-center gap-6 text-sm font-medium">{links.map(([url,name])=><Link key={url} href={url} className="hover:text-sage">{name}</Link>)}<Link className="btn !py-2" href="/login">Anmelden</Link></nav><button className="lg:hidden" aria-label="Menü öffnen" onClick={()=>setOpen(!open)}>{open?<X/>:<Menu/>}</button></div>{open&&<nav className="lg:hidden px-6 pb-5 flex flex-col gap-4">{[...links,['/login','Anmelden']].map(([url,name])=><Link key={url} href={url} onClick={()=>setOpen(false)}>{name}</Link>)}</nav>}</header>}
+
+import Link from "next/link";
+import Image from "next/image";
+
+export default function Header() {
+  return (
+    <header className="sticky top-0 z-50 bg-[#f8f6ef] border-b border-[#dce5d5]">
+      <nav className="container-wide mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-5">
+
+        {/* Runa Natura Logo */}
+        <Link href="/" aria-label="Runa Natura Startseite">
+          <Image
+            src="/logo.png"
+            alt="Runa Natura"
+            width={240}
+            height={100}
+            className="w-40 md:w-52 h-auto"
+            priority
+          />
+        </Link>
+
+        {/* Navigation */}
+        <div className="flex flex-wrap items-center gap-4 md:gap-6 text-sm font-medium text-[#344b3b]">
+          <Link href="/">Startseite</Link>
+          <Link href="/coaching">Coaching</Link>
+          <Link href="/workshops">Workshops</Link>
+          <Link href="/community">Community</Link>
+          <Link href="/buchen">Buchen</Link>
+          <Link href="/login">Login</Link>
+        </div>
+
+      </nav>
+    </header>
+  );
+}
