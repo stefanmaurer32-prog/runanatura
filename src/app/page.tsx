@@ -1,3 +1,196 @@
-import Link from 'next/link';import {ArrowUpRight,CalendarDays,HeartHandshake,Users,Leaf} from 'lucide-react';
-const cards=[{icon:HeartHandshake,title:'Einzelcoaching',text:'Zeit für dich, deine Fragen und deine persönliche Entwicklung.',href:'/coaching'},{icon:Users,title:'Gruppencoaching',text:'Gemeinsam wachsen, neue Perspektiven gewinnen und sich austauschen.',href:'/coaching'},{icon:CalendarDays,title:'Naturworkshops',text:'Natur erleben, entdecken und mit allen Sinnen lernen.',href:'/workshops'}];
-export default function Home(){return <><section className="relative overflow-hidden bg-[#e7ecdf]"><div className="container-wide grid md:grid-cols-2 items-center gap-12 py-20 md:py-28"><div><div className="uppercase tracking-[.25em] text-xs font-bold text-sage mb-6">Willkommen bei Runa Natura</div><h1 className="text-5xl md:text-7xl font-semibold leading-[1.06]">Raum zum <em className="font-serif font-normal">Wachsen.</em><br/>Zeit für dich.</h1><p className="text-lg leading-relaxed max-w-lg mt-7 text-forest/80">Entdecke Lebensberatung, Persönlichkeitsentwicklung und Naturerlebnisse, die dich auf deinem eigenen Weg begleiten.</p><div className="flex flex-wrap gap-3 mt-9"><Link className="btn" href="/buchen">Termin entdecken <ArrowUpRight className="ml-2" size={18}/></Link><Link className="btn-outline" href="/coaching">Mehr über Coaching</Link></div></div><div className="rounded-[180px_180px_28px_28px] overflow-hidden h-[450px] bg-[#a8b8a1] relative"><div className="absolute inset-0 bg-gradient-to-br from-[#70876c] via-[#b4c4a9] to-[#e4e0c5]"/><div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white/90 p-10"><Leaf size={90} strokeWidth={.8}/><p className="font-serif italic text-4xl mt-8">Zurück zu deiner Natur</p><p className="mt-4 text-sm">Bildplatzhalter – eigenes Naturfoto einsetzen</p></div></div></div></section><section className="section container-wide"><div className="text-center max-w-xl mx-auto"><span className="uppercase tracking-widest text-sage text-xs">Unsere Angebote</span><h2 className="text-4xl mt-3">Dein Weg. Dein Tempo.</h2><p className="mt-4 text-forest/70">Ob persönlich, in der Gruppe oder draussen in der Natur: Finde das passende Angebot.</p></div><div className="grid md:grid-cols-3 gap-5 mt-12">{cards.map(c=><Link href={c.href} key={c.title} className="panel hover:-translate-y-1 hover:shadow-lg"><c.icon size={34} className="text-sage"/><h3 className="text-2xl mt-6">{c.title}</h3><p className="text-forest/70 mt-3 min-h-20">{c.text}</p><span className="font-semibold inline-flex items-center mt-5">Entdecken <ArrowUpRight size={17} className="ml-2"/></span></Link>)}</div></section><section className="bg-[#e7ecdf] section"><div className="container-wide grid md:grid-cols-2 gap-12 items-center"><div><Leaf size={38} className="text-sage"/><h2 className="text-4xl mt-5">Gemeinsam verbunden.</h2><p className="mt-5 leading-8 text-forest/75">In der Runa-Natura-Community entsteht Raum für Austausch, Inspiration und Begegnungen. Teile deine Erfahrungen und entdecke neue Perspektiven.</p><Link href="/community" className="btn mt-7">Community entdecken</Link></div><div className="bg-cream rounded-3xl p-10 text-center"><Users className="mx-auto text-sage" size={72}/><h3 className="text-2xl mt-6">Ein Ort für Begegnungen</h3><p className="mt-3 text-forest/70">Gruppen · Beiträge · Gemeinsame Erlebnisse</p></div></div></section></>}
+
+import Link from "next/link";
+import Image from "next/image";
+import {
+  ArrowUpRight,
+  CalendarDays,
+  HeartHandshake,
+  Users,
+} from "lucide-react";
+
+const cards = [
+  {
+    icon: HeartHandshake,
+    title: "Einzelcoaching",
+    text: "Zeit für dich, deine Fragen und deine persönliche Entwicklung.",
+    href: "/coaching",
+  },
+  {
+    icon: Users,
+    title: "Gruppencoaching",
+    text: "Gemeinsam wachsen, neue Perspektiven gewinnen und sich austauschen.",
+    href: "/coaching",
+  },
+  {
+    icon: CalendarDays,
+    title: "Naturworkshops",
+    text: "Natur erleben, entdecken und mit allen Sinnen lernen.",
+    href: "/workshops",
+  },
+];
+
+export default function Home() {
+  return (
+    <>
+      {/* STARTSEITE / HERO */}
+      <section className="relative overflow-hidden bg-[#e7ecdf]">
+        <div className="container-wide grid md:grid-cols-2 items-center gap-12 py-20 md:py-28">
+
+          {/* Linker Bereich */}
+          <div>
+            <div className="uppercase tracking-[.25em] text-xs font-bold text-sage mb-6">
+              Willkommen bei Runa Natura
+            </div>
+
+            <h1 className="text-5xl md:text-7xl font-semibold leading-[1.06]">
+              Raum zum{" "}
+              <em className="font-serif font-normal">
+                Wachsen.
+              </em>
+              <br />
+              Zeit für dich.
+            </h1>
+
+            <p className="text-lg leading-relaxed max-w-lg mt-7 text-forest/80">
+              Entdecke Lebensberatung, Persönlichkeitsentwicklung
+              und Naturerlebnisse, die dich auf deinem
+              eigenen Weg begleiten.
+            </p>
+
+            <div className="flex flex-wrap gap-3 mt-9">
+              <Link className="btn" href="/buchen">
+                Termin entdecken
+                <ArrowUpRight className="ml-2" size={18} />
+              </Link>
+
+              <Link className="btn-outline" href="/coaching">
+                Mehr über Coaching
+              </Link>
+            </div>
+          </div>
+
+          {/* RECHTER BEREICH – EIGENES NATURFOTO */}
+          <div className="rounded-[180px_180px_28px_28px] overflow-hidden h-[450px] bg-[#a8b8a1] relative">
+
+            <Image
+              src="/natur.jpg"
+              alt="Runa Natura – Zurück zu deiner Natur"
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
+            />
+
+            {/* Dunkler Verlauf für gute Lesbarkeit */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+
+            {/* Text über dem Foto */}
+            <div className="absolute inset-0 flex flex-col justify-end items-center text-center text-white p-10">
+              <p className="font-serif italic text-4xl md:text-5xl">
+                Zurück zu deiner Natur
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* UNSERE ANGEBOTE */}
+      <section className="section container-wide">
+
+        <div className="text-center max-w-xl mx-auto">
+          <span className="uppercase tracking-widest text-sage text-xs">
+            Unsere Angebote
+          </span>
+
+          <h2 className="text-4xl mt-3">
+            Dein Weg. Dein Tempo.
+          </h2>
+
+          <p className="mt-4 text-forest/70">
+            Ob persönlich, in der Gruppe oder draussen
+            in der Natur: Finde das passende Angebot.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-5 mt-12">
+          {cards.map((c) => (
+            <Link
+              href={c.href}
+              key={c.title}
+              className="panel hover:-translate-y-1 hover:shadow-lg transition-all"
+            >
+              <c.icon
+                size={34}
+                className="text-sage"
+              />
+
+              <h3 className="text-2xl mt-6">
+                {c.title}
+              </h3>
+
+              <p className="text-forest/70 mt-3 min-h-20">
+                {c.text}
+              </p>
+
+              <span className="font-semibold inline-flex items-center mt-5">
+                Entdecken
+                <ArrowUpRight
+                  size={17}
+                  className="ml-2"
+                />
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* COMMUNITY */}
+      <section className="bg-[#e7ecdf] section">
+        <div className="container-wide grid md:grid-cols-2 gap-12 items-center">
+
+          <div>
+            <Users
+              size={38}
+              className="text-sage"
+            />
+
+            <h2 className="text-4xl mt-5">
+              Gemeinsam verbunden.
+            </h2>
+
+            <p className="mt-5 leading-8 text-forest/75">
+              In der Runa-Natura-Community entsteht
+              Raum für Austausch, Inspiration und
+              Begegnungen. Teile deine Erfahrungen
+              und entdecke neue Perspektiven.
+            </p>
+
+            <Link
+              href="/community"
+              className="btn mt-7"
+            >
+              Community entdecken
+            </Link>
+          </div>
+
+          <div className="bg-cream rounded-3xl p-10 text-center">
+            <Users
+              className="mx-auto text-sage"
+              size={72}
+            />
+
+            <h3 className="text-2xl mt-6">
+              Ein Ort für Begegnungen
+            </h3>
+
+            <p className="mt-3 text-forest/70">
+              Gruppen · Beiträge · Gemeinsame Erlebnisse
+            </p>
+          </div>
+
+        </div>
+      </section>
+    </>
+  );
+}
