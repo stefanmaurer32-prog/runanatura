@@ -1,0 +1,3 @@
+'use client';
+import {useState} from 'react';
+export default function Newsletter(){const [message,setMessage]=useState('');return <section className="newsletter"><img src="/images/gift.jpg" alt="Geschenk"/><div><h2>Mein Geschenk für dich</h2><p>Melde dich zu meinem Newsletter an und erhalte dein gratis E-Book.</p></div><form onSubmit={e=>{e.preventDefault();setMessage('Die Newsletter-Anbindung ist noch nicht aktiviert. Deine Adresse wurde nicht gespeichert.')}}><input type="email" required aria-label="Deine E-Mail-Adresse" placeholder="Deine E-Mail-Adresse"/><button className="btn">Jetzt anmelden →</button><small role="status">{message}</small></form></section>}
